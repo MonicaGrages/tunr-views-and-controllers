@@ -3,7 +3,7 @@
 
 <img class='artist-photo' src="<%= @artist.photo_url %>">
 
-<h3>Songs</h3>
+<h3>Songs <%= link_to "(+)", new_artist_song_path(@artist) %></h3>
 <ul>
 <% @artist.songs.each do |song| %>
     <!-- build the list element for each song -->
