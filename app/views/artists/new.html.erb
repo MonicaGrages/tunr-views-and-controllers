@@ -1,15 +1,14 @@
 <h2>New Artist</h2>
 
-<form action="/artists" method="post" >
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label for="name">Name:</label>
-  <input name="artist[name]">
+<%= form_for @artist do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-  <label for="photo_url">Photo URL:</label>
-  <input name="artist[photo_url]">
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %>
 
-  <label for="nationality">Nationality:</label>
-  <input name="artist[nationality]">
+  <%= f.label :nationality %>
+  <%= f.text_field :nationality %>
 
-  <input type="submit" value="Create">
-</form>
+  <%= f.submit %>
+<% end %>

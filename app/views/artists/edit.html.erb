@@ -1,25 +1,18 @@
-<h2>Edit <%= @artist.name %></h2>
+<h2>Edit Artist</h2>
 
-<!-- When a user clicks edit... -->
-<form action="/artists/<%= @artist.id %>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<%= form_for @artist do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-  <label for="artist[name]">Name:</label>
-  <input name="artist[name]" value="<%= @artist.name %>">
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %>
 
-  <label for="artistx[photo_url]">Photo URL:</label>
-  <input name="artist[photo_url]" value="<%= @artist.photo_url %>">
+  <%= f.label :nationality %>
+  <%= f.text_field :nationality %>
 
-  <label for="artist[nationality]">Nationality:</label>
-  <input name="artist[nationality]" value="<%= @artist.nationality %>">
+  <%= f.submit %>
+<% end %>
 
-  <input type="submit" value="Edit">
-</form>
-
-<!-- When a user clicks delete... -->
-<form action="/artists/<%= @artist.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="delete">
-  <input class="button-delete" type="submit" value="Delete">
-</form>
+<%= form_for @artist, method: :delete do |f| %>
+  <%= f.submit "Delete!", class: "delete" %>
+<% end %>

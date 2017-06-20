@@ -1,47 +1,49 @@
 class ArtistsController < ApplicationController
-
-  # GET /artists
+  # index
   def index
     @artists = Artist.all
   end
 
-  # GET /artists/:id
+  # new
+  def new
+    @artist = Artist.new
+  end
+
+  # create
+  def create
+    @artist = Artist.create!(artist_params)
+
+    redirect_to artist_path(@artist)
+  end
+
+  #show
   def show
     @artist = Artist.find(params[:id])
   end
 
-  # GET /artists/new
-  def new
-  end
-
-  # POST   /artists
-  def create
-    @artist = Artist.create!(artist_params)
-    redirect_to "/artists/#{@artist.id}"
-  end
-
-  # GET /artists/:id/edit
+  # edit
   def edit
     @artist = Artist.find(params[:id])
   end
 
-  # PATCH  /artists/:id
+
+  # update
   def update
     @artist = Artist.find(params[:id])
-    @artist.update!(artist_params)
-    redirect_to "/artists/#{@artist.id}"
+    @artist.update(artist_params)
+
+    redirect_to artist_path(@artist)
   end
 
-  # DELETE /artists/:id
+  # destroy
   def destroy
     @artist = Artist.find(params[:id])
     @artist.destroy
-    redirect_to "/artists"
+
+    redirect_to artists_path
   end
 
-  # Private to artists controller
   private
-  # Only allow these params from the scary internet
   def artist_params
     params.require(:artist).permit(:name, :photo_url, :nationality)
   end
